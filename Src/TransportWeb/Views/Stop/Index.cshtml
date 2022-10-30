@@ -1,0 +1,57 @@
+﻿@model TransportWeb.Models.Stop
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row justify-content-between">
+    <div class="col-4">
+        <h4 class="text-success">Stop Details</h4>
+    </div>
+    <div class="col-2">
+        <a class="btn btn-success" asp-action="AddStopDetails">Create New</a>
+
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Stop Id
+            </th>
+            <th>
+                Stop Name
+            </th>
+            <th>
+                Route Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.StopList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StopId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StopName)
+                </td>
+                <td>
+                    <select disabled asp-for="@item.RouteNum" class="form-control no-border" asp-items="@Model.RouteList">
+                    </select>
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "EditStopDetails", new { id=item.StopId},new { @class = "btn btn-warning btn-sm" })
+                    @*  @Html.ActionLink("Details", "GetStopDetails", new {  id=item.StopId }, new{@class="btn btn-success btn-sm"}) |*@
+                    @Html.ActionLink("Delete", "DeleteStopDetails", new { id=item.StopId },new{@class="btn btn-danger btn-sm"})
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.StopList.Count == 0)
+{
+    <h6 class="text-success">No Data Available</h6>
+}

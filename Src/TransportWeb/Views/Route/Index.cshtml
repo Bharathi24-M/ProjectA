@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TransportWeb.Models.RouteInfo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row justify-content-between">
+    <div class="col-4">
+        <h4 class="text-success"> Route Details</h4>
+    </div>
+    <div class="col-2">
+        <a class="btn btn-success" asp-action="AddRouteDetails">Create New</a>
+
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RouteNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RouteName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RouteName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RouteNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RouteName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleNum)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "EditRouteDetails", new { id=item.RouteNum },new { @class = "btn btn-warning btn-sm" })
+                    @*  @Html.ActionLink("Details", "GetRouteDetails", new { id=item.RouteNum }, new{@class="btn btn-success btn-sm"}) |*@
+                    @Html.ActionLink("Delete", "DeleteRouteDetails", new { id=item.RouteNum },new{@class="btn btn-danger btn-sm"})
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.Count() == 0)
+{
+    <h6 class="text-success">No Data Available</h6>
+}

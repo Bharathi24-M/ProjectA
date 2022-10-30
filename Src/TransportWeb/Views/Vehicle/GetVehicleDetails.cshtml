@@ -1,0 +1,41 @@
+﻿@model TransportWeb.Models.VehicleInfo
+
+@{
+    ViewData["Title"] = "GetVehicleDetails";
+}
+
+<h4>Vehicle Details</h4>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VehicleNum)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VehicleNum)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Capacity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Capacity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AvailableSeats)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AvailableSeats)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsOperable)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsOperable)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "EditVehicleDetails", new { id=Model.VehicleNum  }) |
+    <a asp-action="Index">Back to List</a>
+</div>

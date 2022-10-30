@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var adminInfo = new AdminInfo();
+    if (HttpContextAccessor.HttpContext.Session.GetString("UserName") != null)
+    {
+        var logininfo = HttpContextAccessor.HttpContext.Session.GetString("UserName");
+        adminInfo = JsonConvert.DeserializeObject<AdminInfo>(logininfo);
+    }
+}
+@if (adminInfo.UserName != null)
+{
+
+    <div class="btn-group">
+        <div class="btn-group">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">Employee</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" asp-area="" asp-controller="Employee" asp-action="Index">Employee Details</a>
+                <a class="dropdown-item" asp-area="" asp-controller="Employee" asp-action="AddEmployeeDetails">Add new Employee </a>
+            </div>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">Vehicle</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" asp-area="" asp-controller="Vehicle" asp-action="Index">Vehicle Details</a>
+                <a class="dropdown-item" asp-area="" asp-controller="Vehicle" asp-action="AddVehicleDetails">Add new Vehicle</a>
+            </div>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">Route</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" asp-area="" asp-controller="Route" asp-action="Index">Route Details</a>
+                <a class="dropdown-item" asp-area="" asp-controller="Route" asp-action="AddRouteDetails">Add new Route </a>
+            </div>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">Stop</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" asp-area="" asp-controller="Stop" asp-action="Index">Stop details</a>
+                <a class="dropdown-item" asp-area="" asp-controller="Stop" asp-action="AddStopDetails">Add new Stop</a>
+            </div>
+        </div>
+    </div>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a id="manage" class="nav-link text-light" title="Manage">Hello @adminInfo.UserName </a>
+        </li>
+        <li class="nav-item">
+            <form>
+                <button id="logout" type="submit" class="nav-link btn btn-link text-light" asp-controller="Admin" asp-action="Logout">Logout</button>
+            </form>
+
+        </li>
+    </ul>
+}
+
+

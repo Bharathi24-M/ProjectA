@@ -1,0 +1,82 @@
+﻿@model TransportWeb.Models.StopInfo
+
+@{
+    ViewData["Title"] = "EditStopDetails";
+}
+<div class="row justify-content-between">
+    <div class="col-4">
+        <h4 class="text-success">Edit Stop Details</h4>
+    </div>
+    <div class="col-2">
+        <a class="btn btn-outline-dark" asp-action="Index">Back to List</a>
+    </div>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditStopDetails">
+            <div class="form-group" hidden>
+                <label asp-for="StopId" class="control-label"></label>
+                <input asp-for="StopId" class="form-control" />
+                <span asp-validation-for="StopId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StopName" class="control-label"></label>
+                <input asp-for="StopName" class="form-control" />
+                <span asp-validation-for="StopName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+               
+                <label asp-for="RouteNum" class="control-label"> Route Name</label>
+                <select asp-for="RouteNum" id="RouteName" class="form-control" asp-items="@Model.RouteList">
+                    <option value="">Select Route</option>
+                </select>
+                <span asp-validation-for="RouteNum" class="text-danger"> </span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        @if (ViewBag.EditStopStatus != null)
+        {
+            @if (ViewBag.EditStopStatus == "Stop details updated successfully")
+            {
+                <div class="Alert_card">
+                    <div class="Alert_icon">
+                        <i class="fa fa-check text-success" aria-hidden="true"></i>
+                    </div>
+                    <h1 class="Alert_header">Success</h1>
+                    <p class="Alert_msg"> @ViewBag.EditStopStatus</p>
+                    <div>
+                        <a class="btn btn-success btn-sm mt-3" asp-action="Index">Back to List</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="Alert_card">
+                    <div class="Alert_icon">
+                        <i class="fa fa-times text-danger" aria-hidden="true"></i>
+                    </div>
+                    <h1 class="Alert_header text-danger">Oops...Sorry</h1>
+                    <p class="Alert_msg"> @ViewBag.EditStopStatus</p>
+                    <div>
+                        <a class="btn btn-danger btn-sm mt-3" asp-action="Index">Back to List</a>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

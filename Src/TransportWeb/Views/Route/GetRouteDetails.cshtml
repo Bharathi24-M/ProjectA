@@ -1,0 +1,37 @@
+﻿@model TransportWeb.Models.RouteInfo
+
+@{
+    ViewData["Title"] = "GetRouteDetails";
+}
+
+<h4>Route Details</h4>
+
+<div>
+   
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RouteNum)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RouteNum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RouteName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RouteName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VehicleNum)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VehicleNum)
+        </dd>
+        
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "EditRouteDetails", new { id = Model.RouteNum}) |
+    <a asp-action="Index">Back to List</a>
+</div>

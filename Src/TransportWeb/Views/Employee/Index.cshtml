@@ -1,0 +1,82 @@
+﻿@model TransportWeb.Models.Employee
+@using TransportWeb.Models
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row justify-content-between">
+    <div class="col-4">
+        <h4 class="text-success">Employee Details</h4>
+    </div>
+    <div class="col-2">
+        <a class="btn btn-success" asp-action="AddEmployeeDetails">Create New</a>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Employee Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Route Name
+            </th>
+            <th>
+                Stop
+            </th>
+            <th>
+                Vehicle Number
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EmployeeInfoList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    <select disabled asp-for="@item.RouteNum" id="StopName" class="form-control no-border" asp-items="@Model.RouteList">
+                    </select>
+                </td>
+                <td>
+                    <select disabled asp-for="@item.StopId" id="StopName" class="form-control no-border" asp-items="@Model.StopList.Select(x=> new SelectListItem{ Value=x.StopId.ToString(), Text = x.StopName})">
+                    </select>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleNum)
+                </td>
+                <td>
+
+                    @Html.ActionLink("Edit", "EditEmployeeDetails", new { id=item.EmployeeId } ,new { @class = "btn btn-warning btn-sm" })
+                    @*@Html.ActionLink("Details", "GetEmployeeDetails", new {  id=item.EmployeeId}, new{@class="btn btn-success btn-sm"})*@
+                    @Html.ActionLink("Delete", "DeleteEmployeeDetails", new {  id=item.EmployeeId},new{@class="btn btn-danger btn-sm"})
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.EmployeeInfoList.Count == 0)
+{
+    <h6 class="text-success">No Data Available</h6>
+}
