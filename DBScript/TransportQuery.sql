@@ -26,7 +26,6 @@ VehicleNum varchar(30) Foreign Key References VehicleInfo(VehicleNum) not null)
 --To create StopInfo
 create table StopInfo(
 StopId int identity(1,1) Primary key,
-
 RouteNum int Foreign Key References RouteInfo(RouteNum) not null,
 StopName varchar(50)not null)
 
@@ -37,7 +36,8 @@ EmployeeId int identity(1,1) Primary Key,
 Age int,
 PhoneNumber varchar(10)not null,
 VehicleNum varchar(30) Foreign Key References VehicleInfo(VehicleNum) not null,
-StopId int Foreign Key References StopInfo(StopId))
+StopId int Foreign Key References StopInfo(StopId),
+RouteNum int not null)
 
 
 
