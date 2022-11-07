@@ -26,6 +26,11 @@ namespace TransportApi.Controllers
         [HttpPost]
         public IActionResult AddStopInfo(StopInfo e)
         {
+            var result = db.StopInfos.Where(x => x.StopId == e.StopId).Count();
+            if (result > 0)
+            {
+                return Conflict();
+            }
             db.StopInfos.Add(e);
             db.SaveChanges();
             return Ok(e);

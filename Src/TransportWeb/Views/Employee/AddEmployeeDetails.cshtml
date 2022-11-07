@@ -4,13 +4,16 @@
 }
 <div class="row justify-content-between">
     <div class="col-4">
+
         <h4 class="text-success">Add Employee Details</h4>
     </div>
+
     <div class="col-2">
-        <a class="btn btn-outline-dark" asp-action="Index">Back to List</a>
+        <a class="btn btn-outline-dark" asp-action="Index"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List</a>
     </div>
 </div>
 <hr />
+
 
 <div class="row">
     <div class="col-md-4">
@@ -37,10 +40,10 @@
                     <option value="">Select Route</option>
                     @foreach (var item in @Model.RouteList)
                     {
-                        <option data-vehiclenum="@item.VehicleNum" value="@item.RouteNum">@item.RouteName</option>
+                        <option value="@item.RouteNum">@item.RouteName</option>
                     }
                 </select>
-                <span asp-validation-for="VehicleNum" class="text-danger"> </span>
+                <span asp-validation-for="RouteNum" class="text-danger"> </span>
             </div>
             <div class="form-group">
                 <label class="control-label"> Stop Name</label>
@@ -55,19 +58,19 @@
             </div>
             <div class="form-group">
                 <label class="control-label"> Vehicle Number</label>
-                <select asp-for="VehicleNum" class="form-control">
+                <select asp-for="VehicleId" class="form-control">
                     <option value="">Select Transport</option>
                     @foreach (var item in @Model.VehicleList)
                     {
-                        <option value="@item.VehicleNum">@item.VehicleNum</option>
+                        <option data-routeid="@item.RouteNum" value="@item.VehicleId">@item.VehicleNum</option>
                     }
                 </select>
-                <span asp-validation-for="VehicleNum" class="text-danger"></span>
+                <span asp-validation-for="VehicleId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 @if (ViewBag.AddEmployeestatus == null)
                 {
-                    <input type="submit" value="Create" class="btn btn-success" />
+                    <input type="submit" value="Add Employee" class="btn btn-success" />
                 }
             </div>
 
@@ -85,7 +88,7 @@
                     <h1 class="Alert_header">Success</h1>
                     <p class="Alert_msg"> @ViewBag.AddEmployeestatus</p>
                     <div>
-                        <a class="btn btn-success btn-sm mt-3" asp-action="AddEmployeeDetails">Add new Employee</a>
+                        <a class="btn btn-success btn-sm mt-3" asp-action="AddEmployeeDetails"><i class="fa fa-plus-square fa-lg" aria-hidden="true"></i> Add new Employee</a>
                     </div>
                 </div>
             }
@@ -98,7 +101,7 @@
                     <h1 class="Alert_header text-danger">Oops...Sorry</h1>
                     <p class="Alert_msg"> @ViewBag.AddEmployeestatus</p>
                     <div>
-                        <a class="btn btn-danger btn-sm mt-3" asp-action="Index">Back to List</a>
+                        <a class="btn btn-danger btn-sm mt-3" asp-action="Index"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List</a>
                     </div>
                 </div>
             }
@@ -110,23 +113,20 @@
         setStop();
     }, false);
     function setStop() {
-        var RouteNum = document.getElementById("RouteNum");
+        var Route = document.getElementById("RouteNum");
         var StopId = document.getElementById("StopId");
+        var Vehicle = document.getElementById("VehicleId");
 
         for (i = 1; i < StopId.options.length; i++) {
-            if (StopId.options[i].getAttribute("data-routeid") == RouteNum.value) {
-                StopId.options[i].removeAttribute("hidden");
+            if (StopId.options[i].getAttribute("data-routeid") == Route.value) {
+                StopId.options[i].removeAttribute("hidden"); // Show
             } else {
-                StopId.options[i].setAttribute("hidden", "hidden");
+                StopId.options[i].setAttribute("hidden", "hidden"); //Hide
             }
         }
 
-        var selectedIndex = RouteNum.selectedIndex;
-        var VehicleNum = RouteNum.options[selectedIndex].getAttribute("data-vehiclenum");
-
-        var Vehicle = document.getElementById("VehicleNum");
         for (i = 1; i < Vehicle.options.length; i++) {
-            if (Vehicle.options[i].value == VehicleNum) {
+            if (Vehicle.options[i].getAttribute("data-routeid") == Route.value) {
                 Vehicle.options[i].removeAttribute("hidden");
             } else {
                 Vehicle.options[i].setAttribute("hidden", "hidden");

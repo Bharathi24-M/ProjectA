@@ -1,47 +1,43 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
+using TransportWeb.Functions;
 using TransportWeb.Models;
 
 namespace TransportWeb.Controllers
 {
     public class VehicleController : Controller
     {
-        public static List<VehicleInfo> VehicleInfo = new List<VehicleInfo>();
+        Routes ObjRoute = new Routes();
+        Vehicle ObjVehicle = new Vehicle();
+        Employee ObjEmp = new Employee();
         public async Task<IActionResult> Index()
         {
+            Vehicles Vehicle = new Vehicles();
             if (HttpContext.Session.GetString("UserName") == null)
             {
                 var error = new ErrorViewModel();
                 error.Errorcode = 401;
                 return View("Error", error);
             }
-            using (var client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/Json"));
-                HttpResponseMessage Res = await client.GetAsync("https://localhost:7291/api/Vehicle");
-                if (Res.IsSuccessStatusCode)
-                {
-                    var empress = Res.Content.ReadAsStringAsync().Result;
-                    VehicleInfo = JsonConvert.DeserializeObject<List<VehicleInfo>>(empress);//to convert json to list
-                }
-            }
-            return View(VehicleInfo);
+            Vehicle.VehicleList = await ObjVehicle.GetVehicle();
+            Vehicle.RouteList = await ObjRoute.GetRoute();
+            return View(Vehicle);
         }
-        public IActionResult AddVehicleDetails()
+        public async Task<IActionResult> AddVehicleDetails()
         {
-
+            VehicleInfo Vehicle = new VehicleInfo();
             if (HttpContext.Session.GetString("UserName") == null)
             {
                 var error = new ErrorViewModel();
                 error.Errorcode = 401;
                 return View("Error", error);
             }
-            return View();
+            Vehicle.RouteInfos = await ObjRoute.GetRoute();
+            return View(Vehicle);
         }
         [HttpPost]
-        public async Task<IActionResult> AddVehicleDetails(VehicleInfo e)
+        public async Task<IActionResult> AddVehicleDetails(VehicleInfo Vehicle)
         {
             try
             {
@@ -51,23 +47,8 @@ namespace TransportWeb.Controllers
                     error.Errorcode = 401;
                     return View("Error", error);
                 }
-                using (var client = new HttpClient())
-                {
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(e), Encoding.UTF8, "application/json");
-                    using (var response = await client.PostAsync("https://localhost:7291/api/Vehicle", content))
-                    {
-                        string apiresponse = await response.Content.ReadAsStringAsync();
-                        var Vehicleobj = JsonConvert.DeserializeObject<VehicleInfo>(apiresponse);
-                        if (response.IsSuccessStatusCode)
-                        {
-                            ViewBag.AddVehiclestatus = "Vehicle details added Successfully..";
-                        }
-                        else
-                        {
-                            ViewBag.AddVehiclestatus = $"Unable to process - {response.StatusCode}";
-                        }
-                    }
-                }
+                ViewBag.AddVehiclestatus = await ObjVehicle.AddVehicle(Vehicle);
+                Vehicle.RouteInfos = await ObjRoute.GetRoute();
             }
             catch (Exception)
             {
@@ -75,12 +56,10 @@ namespace TransportWeb.Controllers
                 return View();
             }
 
-            return View(e);
-            //return RedirectToAction("Index");
+            return View(Vehicle);
         }
-        public async Task<IActionResult> GetVehicleDetails(string id)
+        public async Task<IActionResult> GetVehicleDetails(int id)
         {
-
             if (HttpContext.Session.GetString("UserName") == null)
             {
                 var error = new ErrorViewModel();
@@ -88,21 +67,12 @@ namespace TransportWeb.Controllers
                 return View("Error", error);
             }
             VehicleInfo Vehicle = new VehicleInfo();
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.GetAsync("https://localhost:7291/api/Vehicle/" + id))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    Vehicle = JsonConvert.DeserializeObject<VehicleInfo>(apiResponse);
-                }
-
-            }
+            Vehicle = await ObjVehicle.GetVehicle(id);
             return View(Vehicle);
         }
 
-        public async Task<IActionResult> EditVehicleDetails(string id)
+        public async Task<IActionResult> EditVehicleDetails(int id)
         {
-
             if (HttpContext.Session.GetString("UserName") == null)
             {
                 var error = new ErrorViewModel();
@@ -110,18 +80,13 @@ namespace TransportWeb.Controllers
                 return View("Error", error);
             }
             VehicleInfo Vehicle = new VehicleInfo();
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.GetAsync("https://localhost:7291/api/Vehicle/" + id))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    Vehicle = JsonConvert.DeserializeObject<VehicleInfo>(apiResponse);
-                }
-            }
+            Vehicle = await ObjVehicle.GetVehicle(id);
+            Vehicle.RouteInfos = await ObjRoute.GetRoute();
+            TempData["OldRouteNum"] = Vehicle.RouteNum;
             return View(Vehicle);
         }
         [HttpPost]
-        public async Task<ActionResult> EditVehicleDetails(VehicleInfo e)
+        public async Task<ActionResult> EditVehicleDetails(VehicleInfo Vehicle)
         {
             try
             {
@@ -131,104 +96,70 @@ namespace TransportWeb.Controllers
                     error.Errorcode = 401;
                     return View("Error", error);
                 }
-                VehicleInfo receiveVehicle = new VehicleInfo();
-
-                using (var httpClient = new HttpClient())
+                Vehicle.RouteInfos = await ObjRoute.GetRoute();
+                if ((int)TempData["OldRouteNum"] != Vehicle.RouteNum)
                 {
-
-                    string id = e.VehicleNum;
-                    StringContent content1 = new StringContent(JsonConvert.SerializeObject(e), Encoding.UTF8, "application/json");
-                    using (var response = await httpClient.PutAsync("https://localhost:7291/api/Vehicle/" + id, content1))
+                    var emplist = await ObjEmp.GetEmployee();
+                    var count = emplist.Where(x => x.VehicleId == Vehicle.VehicleId).Count();
+                    if (count > 0)
                     {
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        receiveVehicle = JsonConvert.DeserializeObject<VehicleInfo>(apiResponse);
-                        if (response.IsSuccessStatusCode)
-                        {
-                            ViewBag.EditVehicleStatus = "Vehicle details updated successfully";
-                        }
-                        else
-                        {
-                            ViewBag.EditVehicleStatus = $"Unable to process - {response.StatusCode}";
-                        }
+                        ViewBag.EditVehicleStatus = "Unable to change the route name, Vehicle already assigned to the Employee";
+                        return View(Vehicle);
                     }
                 }
+                ViewBag.EditVehicleStatus = await ObjVehicle.UpdateVehicle(Vehicle);
+
             }
             catch (Exception)
             {
                 ViewBag.EditVehicleStatus = "Something went wrong";
             }
-            return View(e);
-            //return RedirectToAction("Index");
+
+            return View(Vehicle);
         }
         [HttpGet]
-        public async Task<ActionResult> DeleteVehicleDetails(string id)
+        public async Task<ActionResult> DeleteVehicleDetails(int id)
         {
-
             if (HttpContext.Session.GetString("UserName") == null)
             {
                 var error = new ErrorViewModel();
                 error.Errorcode = 401;
                 return View("Error", error);
             }
-
-            VehicleInfo e = new VehicleInfo();
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.GetAsync("https://localhost:7291/api/Vehicle/" + id))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    TempData["VehicleNum"] = apiResponse;
-                    e = JsonConvert.DeserializeObject<VehicleInfo>(apiResponse);
-                }
-            }
-
-            return View(e);
+            VehicleInfo Vehicle = new VehicleInfo();
+            Vehicle = await ObjVehicle.GetVehicle(id);
+            TempData["VehicleId"] = Vehicle.VehicleId;
+            return View(Vehicle);
         }
         [HttpPost]
         public async Task<ActionResult> DeleteVehicleDetails()
         {
-            VehicleInfo Vehicle = new VehicleInfo();   
+            VehicleInfo Vehicle = new VehicleInfo();
             try
             {
-
                 if (HttpContext.Session.GetString("UserName") == null)
                 {
                     var error = new ErrorViewModel();
                     error.Errorcode = 401;
                     return View("Error", error);
                 }
-                Vehicle = JsonConvert.DeserializeObject<VehicleInfo>(TempData["VehicleNum"].ToString());
+                var VehicleId = (int)TempData["VehicleId"];
+                Vehicle = await ObjVehicle.GetVehicle(VehicleId);
 
-                if (Vehicle == null)
-                {
-                    Vehicle = new VehicleInfo();
-                }
-                using (var httpClient = new HttpClient())
-                {
-                    using (var response = await httpClient.DeleteAsync("https://localhost:7291/api/Vehicle/" + Vehicle.VehicleNum))
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string apiResponse = await response.Content.ReadAsStringAsync();
-                            ViewBag.DeleteVehicleStatus = "Vehicle details deleted successfully";
-                        }
-                        else if (response.StatusCode == System.Net.HttpStatusCode.FailedDependency)
-                        {
-                            ViewBag.DeleteVehicleStatus = "Vehicle number is used, Please delete it from route then try again..!";
-                        }
-                        else
-                        {
-                            ViewBag.DeleteRouteStatus = $"Unable to process - {response.StatusCode}";
-                        }
-                    }
 
+                var emplist = await ObjEmp.GetEmployee();
+                var count = emplist.Where(x => x.VehicleId == Vehicle.VehicleId).Count();
+                if (count > 0)
+                {
+                    ViewBag.DeleteVehicleStatus = "Unable to delete, Vehicle already assigned to the Employee";
+                    return View(Vehicle);
                 }
+                ViewBag.DeleteVehicleStatus = await ObjVehicle.DeleteVehicle(Vehicle);
             }
-            catch(Exception)
-             {
+            catch (Exception)
+            {
                 ViewBag.DeleteVehicleStatus = "Something went wrong";
             }
-            
             return View(Vehicle);
         }
     }

@@ -24,9 +24,14 @@ namespace TransportApi.Controllers
         [HttpPost]
         public IActionResult AddRouteInfo(RouteInfo e)
         {
+            var result = db.RouteInfos.Where(x => x.RouteName == e.RouteName).Count();
+            if (result > 0)
+            {
+                return Conflict();
+            }
             db.RouteInfos.Add(e);
             db.SaveChanges();
-            return Ok();
+            return Ok(e);
         }
 
         [HttpGet]

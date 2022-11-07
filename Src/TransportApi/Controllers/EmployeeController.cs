@@ -47,8 +47,7 @@ namespace TransportApi.Controllers
         [Route("{id}")]
         public IActionResult Delete(int id)
         {
-            var result = db.EmployeeInfos.Find(id);
-            
+            var result = db.EmployeeInfos.Find(id);            
             db.EmployeeInfos.Remove(result);
             db.SaveChanges();
             return Ok(result);

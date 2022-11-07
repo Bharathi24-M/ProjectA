@@ -8,12 +8,12 @@
         <h4 class="text-success"> Route Details</h4>
     </div>
     <div class="col-2">
-        <a class="btn btn-success" asp-action="AddRouteDetails">Create New</a>
+        <a class="btn btn-success" asp-action="AddRouteDetails"><i class="fa fa-plus-square fa-lg" aria-hidden="true"></i> Add Route</a>
 
     </div>
 </div>
 
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -22,12 +22,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.RouteName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VehicleNum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RouteName)
-            </th>
+           
             <th></th>
         </tr>
     </thead>
@@ -42,13 +37,9 @@
                     @Html.DisplayFor(modelItem => item.RouteName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.VehicleNum)
-                </td>
-
-                <td>
-                    @Html.ActionLink("Edit", "EditRouteDetails", new { id=item.RouteNum },new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink(" Edit", "EditRouteDetails", new { id=item.RouteNum },new { @class = "btn btn-warning btn-sm fa fa-pencil" })
                     @*  @Html.ActionLink("Details", "GetRouteDetails", new { id=item.RouteNum }, new{@class="btn btn-success btn-sm"}) |*@
-                    @Html.ActionLink("Delete", "DeleteRouteDetails", new { id=item.RouteNum },new{@class="btn btn-danger btn-sm"})
+                    @Html.ActionLink(" Delete", "DeleteRouteDetails", new { id=item.RouteNum },new{@class="btn btn-danger btn-sm fa fa-trash"})
                 </td>
             </tr>
         }

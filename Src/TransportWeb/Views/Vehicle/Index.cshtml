@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TransportWeb.Models.VehicleInfo>
+﻿@model TransportWeb.Models.Vehicles
 @{
     ViewData["Title"] = "Index";
 }
@@ -7,31 +7,34 @@
         <h4 class="text-success"> Vehicle Details</h4>
     </div>
     <div class="col-2">
-        <a class="btn btn-success" asp-action="AddVehicleDetails">Create New</a>
+        <a class="btn btn-success" asp-action="AddVehicleDetails"><i class="fa fa-plus-square fa-lg" aria-hidden="true"></i> Add Vehicle</a>
 
     </div>
 </div>
 
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.VehicleNum)
+                Vehicle Number
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Capacity)
+                Capacity
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AvailableSeats)
+                Available Seats
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsOperable)
+                Route Name
+            </th>
+            <th>
+                Status
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.VehicleList)
         {
             <tr>
                 <td>
@@ -44,25 +47,28 @@
                     @Html.DisplayFor(modelItem => item.AvailableSeats)
                 </td>
                 <td>
+                    @Model.RouteList.Find(x=>x.RouteNum == item.RouteNum).RouteName
+                </td>                
+                <td>
                     @if (item.IsOperable == true)
                     {
-                        <label>Yes</label>
+                       <i class="fa fa-check" style="color:green" aria-hidden="true"></i>                      
                     }
                     else
                     {
-                        <label>No</label>
+                        <i class="fa fa-times" style="color:red" aria-hidden="true"></i>                  
                     }
                 </td>
                 <td>
-                    @Html.ActionLink("Edit","EditVehicleDetails", new { id=item.VehicleNum },new { @class = "btn btn-warning btn-sm" })
-                    @*   @Html.ActionLink("Details", "GetVehicleDetails", new { id=item.VehicleNum} , new{@class="btn btn-success btn-sm"} ) |*@
-                    @Html.ActionLink("Delete", "DeleteVehicleDetails", new { id=item.VehicleNum},new{@class="btn btn-danger btn-sm"} )
+                    @Html.ActionLink(" Edit","EditVehicleDetails", new { id=item.VehicleId },new { @class = "btn btn-warning btn-sm fa fa-pencil"})
+                    @*   @Html.ActionLink("Details", "GetVehicleDetails", new { id=item.VehicleId} , new{@class="btn btn-success btn-sm"} ) |*@
+                    @Html.ActionLink(" Delete", "DeleteVehicleDetails", new { id=item.VehicleId},new{@class="btn btn-danger btn-sm fa fa-trash"} )
                 </td>
             </tr>
         }
     </tbody>
 </table>
-@if (Model.Count() == 0)
+@if (Model.VehicleList.Count == 0)
 {
     <h6 class="text-success">No Data Available</h6>
 }

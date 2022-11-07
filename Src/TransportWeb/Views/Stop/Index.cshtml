@@ -1,4 +1,4 @@
-﻿@model TransportWeb.Models.Stop
+﻿@model TransportWeb.Models.StopList
 
 @{
     ViewData["Title"] = "Index";
@@ -8,11 +8,10 @@
         <h4 class="text-success">Stop Details</h4>
     </div>
     <div class="col-2">
-        <a class="btn btn-success" asp-action="AddStopDetails">Create New</a>
-
+        <a class="btn btn-success" asp-action="AddStopDetails"><i class="fa fa-plus-square fa-lg" aria-hidden="true"></i> Add Stop</a>
     </div>
 </div>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -28,7 +27,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.StopList)
+        @foreach (var item in Model.StopInfoList)
         {
             <tr>
                 <td>
@@ -43,15 +42,15 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Edit", "EditStopDetails", new { id=item.StopId},new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink(" Edit", "EditStopDetails", new { id=item.StopId},new { @class = "btn btn-warning btn-sm fa fa-pencil" })
                     @*  @Html.ActionLink("Details", "GetStopDetails", new {  id=item.StopId }, new{@class="btn btn-success btn-sm"}) |*@
-                    @Html.ActionLink("Delete", "DeleteStopDetails", new { id=item.StopId },new{@class="btn btn-danger btn-sm"})
+                    @Html.ActionLink(" Delete", "DeleteStopDetails", new { id=item.StopId },new{@class="btn btn-danger btn-sm fa fa-trash"})
                 </td>
             </tr>
         }
     </tbody>
 </table>
-@if (Model.StopList.Count == 0)
+@if (Model.StopInfoList.Count == 0)
 {
     <h6 class="text-success">No Data Available</h6>
 }

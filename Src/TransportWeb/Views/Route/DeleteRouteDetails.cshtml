@@ -8,7 +8,7 @@
         <h4 class="text-success">Delete Route Details</h4>
     </div>
     <div class="col-2">
-        <a class="btn btn-outline-dark" asp-action="Index">Back to List</a>
+        <a class="btn btn-outline-dark" asp-action="Index"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List</a>        
     </div>
 </div>
 
@@ -29,18 +29,14 @@
             <dd class="col-sm-6">
                 @Html.DisplayFor(model => model.RouteName)
             </dd>
-            <dt class="col-sm-6">
-                @Html.DisplayNameFor(model => model.VehicleNum)
-            </dt>
-            <dd class="col-sm-6">
-                @Html.DisplayFor(model => model.VehicleNum)
-            </dd>
         </dl>
         @if (ViewBag.DeleteRouteStatus == null)
         {
             <form asp-action="DeleteRouteDetails">
                 <h5>Are you sure you want to delete this?</h5>
-                <input type="submit" value="Delete" class="btn btn-danger" />
+                <button class="btn btn-danger">
+                    <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                </button>
             </form>
         }
     </div>
@@ -56,7 +52,7 @@
                     <h1 class="Alert_header">Success</h1>
                     <p class="Alert_msg"> @ViewBag.DeleteRouteStatus</p>
                     <div>
-                        <a class="btn btn-success btn-sm mt-3" asp-action="Index">Back to List</a>
+                        <a class="btn btn-success btn-sm mt-3" asp-action="Index"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List</a>
                     </div>
                 </div>
             }
@@ -69,7 +65,7 @@
                     <h1 class="Alert_header text-danger">Oops...Sorry</h1>
                     <p class="Alert_msg"> @ViewBag.DeleteRouteStatus</p>
                     <div>
-                        <a class="btn btn-danger btn-sm mt-3" asp-action="Index">Back to List</a>
+                        <a class="btn btn-danger btn-sm mt-3" asp-action="Index"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List</a>
                     </div>
                 </div>
             }

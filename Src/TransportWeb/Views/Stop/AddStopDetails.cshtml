@@ -8,7 +8,7 @@
         <h4 class="text-success">Add Stop Details</h4>
     </div>
     <div class="col-2">
-        <a class="btn btn-outline-dark" asp-action="Index">Back to List</a>
+        <a class="btn btn-outline-dark" asp-action="Index"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List</a>
     </div>
 </div>
 
@@ -54,7 +54,7 @@
                     <h1 class="Alert_header">Success</h1>
                     <p class="Alert_msg">@ViewBag.AddStopStatus</p>
                     <div>
-                        <a class="btn btn-success btn-sm mt-3" asp-action="Index">Back to List</a>
+                        <a class="btn btn-success btn-sm mt-3" asp-action="AddStopDetails"><i class="fa fa-plus-square fa-lg" aria-hidden="true"></i> Add New Stop</a>
                     </div>
                 </div>
             }
@@ -67,7 +67,7 @@
                     <h1 class="Alert_header text-danger">Oops...Sorry</h1>
                     <p class="Alert_msg"> @ViewBag.AddStopStatus</p>
                     <div>
-                        <a class="btn btn-danger btn-sm mt-3" asp-action="Index">Back to List</a>
+                        <a class="btn btn-danger btn-sm mt-3" asp-action="Index"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List</a>
                     </div>
                 </div>
             }

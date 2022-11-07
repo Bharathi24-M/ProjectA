@@ -1,4 +1,4 @@
-﻿@model TransportWeb.Models.Employee
+﻿@model TransportWeb.Models.EmployeeList
 @using TransportWeb.Models
 
 @{
@@ -6,13 +6,14 @@
 }
 <div class="row justify-content-between">
     <div class="col-4">
+            
         <h4 class="text-success">Employee Details</h4>
     </div>
     <div class="col-2">
-        <a class="btn btn-success" asp-action="AddEmployeeDetails">Create New</a>
+        <a class="btn btn-success" asp-action="AddEmployeeDetails"><i class="fa fa-plus-square fa-lg" aria-hidden="true"></i> Add Employee</a>
     </div>
 </div>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -56,7 +57,7 @@
                     @Html.DisplayFor(modelItem => item.PhoneNumber)
                 </td>
                 <td>
-                    <select disabled asp-for="@item.RouteNum" id="StopName" class="form-control no-border" asp-items="@Model.RouteList">
+                    <select disabled asp-for="@item.RouteNum" id="RouteName" class="form-control no-border" asp-items="@Model.RouteList">
                     </select>
                 </td>
                 <td>
@@ -64,13 +65,13 @@
                     </select>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.VehicleNum)
+                    <select disabled asp-for="@item.VehicleId" id="VehicleName" class="form-control no-border" asp-items="@Model.VehicleList.Select(x=> new SelectListItem{Value=x.VehicleId.ToString(),Text=x.VehicleNum})">
+                    </select>
                 </td>
                 <td>
-
-                    @Html.ActionLink("Edit", "EditEmployeeDetails", new { id=item.EmployeeId } ,new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink(" Edit", "EditEmployeeDetails", new { id=item.EmployeeId } ,new { @class = "btn btn-warning btn-sm fa fa-pencil" })
                     @*@Html.ActionLink("Details", "GetEmployeeDetails", new {  id=item.EmployeeId}, new{@class="btn btn-success btn-sm"})*@
-                    @Html.ActionLink("Delete", "DeleteEmployeeDetails", new {  id=item.EmployeeId},new{@class="btn btn-danger btn-sm"})
+                    @Html.ActionLink(" Delete", "DeleteEmployeeDetails", new {  id=item.EmployeeId},new{@class="btn btn-danger btn-sm fa fa-trash"})
                 </td>
             </tr>
         }

@@ -7,13 +7,14 @@ namespace TransportApi.Models
     {
         public int EmployeeId { get; set; }
         public string Name { get; set; } = null!;
-        public int? Age { get; set; }
+        public int Age { get; set; }
         public string PhoneNumber { get; set; } = null!;
-        public string VehicleNum { get; set; } = null!;
-        public int? StopId { get; set; }
         public int RouteNum { get; set; }
+        public int VehicleId { get; set; }
+        public int StopId { get; set; }
 
-        public virtual StopInfo? Stop { get; set; }
-        public virtual VehicleInfo? VehicleNumNavigation { get; set; } = null!;
+        public virtual RouteInfo? RouteNumNavigation { get; set; } 
+        public virtual StopInfo? Stop { get; set; } 
+        public virtual VehicleInfo? Vehicle { get; set; } 
     }
 }

@@ -8,7 +8,7 @@
         <h4 class="text-success">Add Vehicle Details</h4>
     </div>
     <div class="col-2">
-        <a class="btn btn-outline-dark" asp-action="Index">Back to List</a>
+        <a class="btn btn-outline-dark" asp-action="Index"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List</a>
     </div>
 </div>
 
@@ -24,17 +24,28 @@
             </div>
             <div class="form-group">
                 <label asp-for="Capacity" class="control-label"></label>
-                <input asp-for="Capacity" class="form-control" />
+                <input asp-for="Capacity" class="form-control" onkeyup="SeatFunction()"  />
                 <span asp-validation-for="Capacity" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AvailableSeats" class="control-label"></label>
-                <input asp-for="AvailableSeats" class="form-control" />
+                <input asp-for="AvailableSeats" class="form-control"  readonly />
                 <span asp-validation-for="AvailableSeats" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label"> Route Name</label>
+                <select asp-for="RouteNum" class="form-control" onchange="setStop()">
+                    <option value="">Select Route</option>
+                    @foreach (var item in @Model.RouteInfos)
+                    {
+                        <option value="@item.RouteNum">@item.RouteName</option>
+                    }
+                </select>
+                <span asp-validation-for="RouteNum" class="text-danger"> </span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsOperable" required /> @Html.DisplayNameFor(model => model.IsOperable)
+                    <input class="form-check-input" asp-for="IsOperable" checked required /> @Html.DisplayNameFor(model => model.IsOperable)
                 </label>
             </div>
             <div class="form-group">
@@ -57,7 +68,7 @@
                     <h1 class="Alert_header">Success</h1>
                     <p class="Alert_msg"> @ViewBag.AddVehiclestatus</p>
                     <div>
-                        <a class="btn btn-success btn-sm mt-3" asp-action="AddEmployeeDetails">Add new Vehicle</a>
+                        <a class="btn btn-success btn-sm mt-3" asp-action="AddVehicleDetails"><i class="fa fa-plus-square fa-lg" aria-hidden="true"></i> Add new Vehicle</a>
                     </div>
                 </div>
             }
@@ -70,16 +81,20 @@
                     <h1 class="Alert_header text-danger">Oops...Sorry</h1>
                     <p class="Alert_msg"> @ViewBag.AddVehiclestatus</p>
                     <div>
-                        <a class="btn btn-danger btn-sm mt-3" asp-action="Index">Back to List</a>
+                        <a class="btn btn-danger btn-sm mt-3" asp-action="AddVehicleDetails"><i class="fa fa-plus-square fa-lg" aria-hidden="true"></i> Add Vehicle</a>
                     </div>
                 </div>
             }
         }
-
-
     </div>
 </div>
-
+<script>
+    function SeatFunction() {
+        var x = document.getElementById("Capacity");
+        var y = document.getElementById("AvailableSeats");
+        y.value = x.value;
+    }
+</script>
 
 
 @section Scripts {

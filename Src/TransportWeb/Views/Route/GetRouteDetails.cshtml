@@ -22,16 +22,9 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RouteName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VehicleNum)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VehicleNum)
-        </dd>
-        
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "EditRouteDetails", new { id = Model.RouteNum}) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Edit", "EditRouteDetails", new { id = Model.RouteNum},new { @class = "btn btn-warning btn-sm fa fa-pencil"}) |
+    <a asp-action="Index"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List</a>
 </div>

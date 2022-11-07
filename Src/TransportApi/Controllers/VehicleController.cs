@@ -10,7 +10,6 @@ namespace TransportApi.Controllers
     public class VehicleController : ControllerBase
     {
         private readonly TransportContext db;
-
         public VehicleController(TransportContext _db)
         {
             db = _db;
@@ -21,25 +20,36 @@ namespace TransportApi.Controllers
         {
             return Ok(db.VehicleInfos.ToList());
         }
+
         [HttpPost]
         public IActionResult AddVehicleInfo(VehicleInfo e)
         {
+            var result = db.VehicleInfos.Where(x => x.VehicleNum == e.VehicleNum && x.RouteNum == e.RouteNum).Count();
+            if (result > 0)
+            {
+                return Conflict();
+            }
             db.VehicleInfos.Add(e);
             db.SaveChanges();
-            return Ok();
+            return Ok(e);
         }
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult GetVehiclebyId(string id)
+        public IActionResult GetVehiclebyId(int id)
         {
-            var result = db.VehicleInfos.Where(x => x.VehicleNum == id).SingleOrDefault();
+            var result = db.VehicleInfos.Where(x => x.VehicleId == id).SingleOrDefault();
             return Ok(result);
         }
         [HttpPut]
         [Route("{id}")]
-        public IActionResult EditVehicle(string id, VehicleInfo e)
+        public IActionResult EditVehicle(int id, VehicleInfo e)
         {
+            var result = db.VehicleInfos.Where(x => x.VehicleNum == e.VehicleNum && x.RouteNum == e.RouteNum && x.VehicleId != e.VehicleId).Count();
+            if (result > 0)
+            {
+                return Conflict();
+            }
             db.VehicleInfos.Update(e);
             db.SaveChanges();
             return Ok(e);
@@ -47,12 +57,12 @@ namespace TransportApi.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult DeleteVehicle(string id)
+        public IActionResult DeleteVehicle(int id)
         {
 
             try
             {
-                var result = db.VehicleInfos.Where(x => x.VehicleNum == id).SingleOrDefault();
+                var result = db.VehicleInfos.Where(x => x.VehicleId == id).SingleOrDefault();
                 if (result != null)
                 {
                     db.VehicleInfos.Remove(result);

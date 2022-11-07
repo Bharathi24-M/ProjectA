@@ -8,117 +8,117 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TransportWeb
 build_property.RootNamespace = TransportWeb
-build_property.ProjectDir = C:\Bharathi\Softura\MainProject\ProjectA\Src\TransportWeb\
+build_property.ProjectDir = C:\Bharathi\Softura\MainProject\TransportWeb\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = C:\Bharathi\Softura\MainProject\ProjectA\Src\TransportWeb
+build_property.MSBuildProjectDirectory = C:\Bharathi\Softura\MainProject\TransportWeb
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Admin/Login.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Admin/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Employee/AddEmployeeDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Employee/AddEmployeeDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcQWRkRW1wbG95ZWVEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Employee/DeleteEmployeeDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Employee/DeleteEmployeeDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcRGVsZXRlRW1wbG95ZWVEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Employee/EditEmployeeDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Employee/EditEmployeeDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcRWRpdEVtcGxveWVlRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Employee/GetEmployeeDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Employee/GetEmployeeDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcR2V0RW1wbG95ZWVEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Employee/Index.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Employee/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Route/AddRouteDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Route/AddRouteDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGVcQWRkUm91dGVEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Route/DeleteRouteDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Route/DeleteRouteDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGVcRGVsZXRlUm91dGVEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Route/EditRouteDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Route/EditRouteDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGVcRWRpdFJvdXRlRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Route/GetRouteDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Route/GetRouteDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGVcR2V0Um91dGVEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Route/Index.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Route/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Shared/Error.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Shared/PartialLayout.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Shared/PartialLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxMYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Stop/AddStopDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Stop/AddStopDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcFxBZGRTdG9wRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Stop/DeleteStopDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Stop/DeleteStopDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcFxEZWxldGVTdG9wRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Stop/EditStopDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Stop/EditStopDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcFxFZGl0U3RvcERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Stop/GetStopDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Stop/GetStopDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcFxHZXRTdG9wRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Stop/Index.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Stop/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Vehicle/AddVehicleDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Vehicle/AddVehicleDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxBZGRWZWhpY2xlRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Vehicle/DeleteVehicleDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Vehicle/DeleteVehicleDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxEZWxldGVWZWhpY2xlRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Vehicle/EditVehicleDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Vehicle/EditVehicleDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxFZGl0VmVoaWNsZURldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Vehicle/GetVehicleDetails.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Vehicle/GetVehicleDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxHZXRWZWhpY2xlRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Vehicle/Index.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Vehicle/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/_ViewImports.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/_ViewStart.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Bharathi/Softura/MainProject/ProjectA/Src/TransportWeb/Views/Shared/_Layout.cshtml]
+[C:/Bharathi/Softura/MainProject/TransportWeb/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-kbrycogbwn

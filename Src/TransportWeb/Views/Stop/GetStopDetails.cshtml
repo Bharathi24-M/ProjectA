@@ -31,6 +31,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.StopId  }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.StopId},new { @class = "btn btn-warning btn-sm fa fa-pencil"}) |
+    <a asp-action="Index"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List</a>
 </div>

@@ -11,10 +11,10 @@ namespace TransportApi.Models
         }
 
         public int StopId { get; set; }
-        public int RouteNum { get; set; }
         public string StopName { get; set; } = null!;
+        public int RouteNum { get; set; }
 
-        public virtual RouteInfo? RouteNumNavigation { get; set; } = null!;
+        public virtual RouteInfo? RouteNumNavigation { get; set; }
         public virtual ICollection<EmployeeInfo> EmployeeInfos { get; set; }
     }
 }

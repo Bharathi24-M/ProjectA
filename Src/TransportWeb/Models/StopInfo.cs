@@ -13,13 +13,13 @@ namespace TransportWeb.Models
         [Display(Name = "Route Number")]
         public int RouteNum { get; set; }
         [Display(Name = "Stop Name")]
+        [RegularExpression(@"^[a-zA-Z][a-zA-Z& ]+[a-zA-Z]$", ErrorMessage = "Enter the valid Stop Name")]
         public string StopName { get; set; } = null!;
-        public List<SelectListItem>? RouteList { get; set; }
-
+        public List<SelectListItem>? RouteList { get; set; }   
     }
-    public class Stop
+    public class StopList
     {
-        public List<StopInfo>? StopList { get; set; }
+        public List<StopInfo>? StopInfoList { get; set; }
         public List<SelectListItem>? RouteList { get; set; }
     }
 }

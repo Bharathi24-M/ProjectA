@@ -52,7 +52,7 @@ namespace TransportApi.Models
             modelBuilder.Entity<EmployeeInfo>(entity =>
             {
                 entity.HasKey(e => e.EmployeeId)
-                    .HasName("PK__Employee__7AD04F1155FE1BD6");
+                    .HasName("PK__Employee__7AD04F113B8A1711");
 
                 entity.ToTable("EmployeeInfo");
 
@@ -64,48 +64,41 @@ namespace TransportApi.Models
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.VehicleNum)
-                    .HasMaxLength(30)
-                    .IsUnicode(false);
+                entity.HasOne(d => d.RouteNumNavigation)
+                    .WithMany(p => p.EmployeeInfos)
+                    .HasForeignKey(d => d.RouteNum)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__EmployeeI__Route__6383C8BA");
 
                 entity.HasOne(d => d.Stop)
                     .WithMany(p => p.EmployeeInfos)
                     .HasForeignKey(d => d.StopId)
-                    .HasConstraintName("FK__EmployeeI__StopI__403A8C7D");
-
-                entity.HasOne(d => d.VehicleNumNavigation)
-                    .WithMany(p => p.EmployeeInfos)
-                    .HasForeignKey(d => d.VehicleNum)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__EmployeeI__Vehic__3F466844");
+                    .HasConstraintName("FK__EmployeeI__StopI__656C112C");
+
+                entity.HasOne(d => d.Vehicle)
+                    .WithMany(p => p.EmployeeInfos)
+                    .HasForeignKey(d => d.VehicleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__EmployeeI__Vehic__6477ECF3");
             });
 
             modelBuilder.Entity<RouteInfo>(entity =>
             {
                 entity.HasKey(e => e.RouteNum)
-                    .HasName("PK__RouteInf__71AD28E18A3EA2FE");
+                    .HasName("PK__RouteInf__71AD28E1B78C22E2");
 
                 entity.ToTable("RouteInfo");
 
                 entity.Property(e => e.RouteName)
                     .HasMaxLength(255)
                     .IsUnicode(false);
-
-                entity.Property(e => e.VehicleNum)
-                    .HasMaxLength(30)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.VehicleNumNavigation)
-                    .WithMany(p => p.RouteInfos)
-                    .HasForeignKey(d => d.VehicleNum)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__RouteInfo__Vehic__398D8EEE");
             });
 
             modelBuilder.Entity<StopInfo>(entity =>
             {
                 entity.HasKey(e => e.StopId)
-                    .HasName("PK__StopInfo__EB6A38F4B637A2BE");
+                    .HasName("PK__StopInfo__EB6A38F4238CA7A6");
 
                 entity.ToTable("StopInfo");
 
@@ -117,19 +110,25 @@ namespace TransportApi.Models
                     .WithMany(p => p.StopInfos)
                     .HasForeignKey(d => d.RouteNum)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__StopInfo__RouteN__3C69FB99");
+                    .HasConstraintName("FK__StopInfo__RouteN__5629CD9C");
             });
 
             modelBuilder.Entity<VehicleInfo>(entity =>
             {
-                entity.HasKey(e => e.VehicleNum)
-                    .HasName("PK__VehicleI__1EC1D099584631D5");
+                entity.HasKey(e => e.VehicleId)
+                    .HasName("PK__VehicleI__476B54928E4C04D1");
 
                 entity.ToTable("VehicleInfo");
 
                 entity.Property(e => e.VehicleNum)
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.RouteNumNavigation)
+                    .WithMany(p => p.VehicleInfos)
+                    .HasForeignKey(d => d.RouteNum)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__VehicleIn__Route__59063A47");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -8,7 +8,7 @@
         <h4 class="text-success">Edit Route Details</h4>
     </div>
     <div class="col-2">
-        <a class="btn btn-outline-dark" asp-action="Index">Back to List</a>
+        <a class="btn btn-outline-dark" asp-action="Index"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List</a>
     </div>
 </div>
 
@@ -27,14 +27,7 @@
                 <label asp-for="RouteName" class="control-label"></label>
                 <input asp-for="RouteName" class="form-control" />
                 <span asp-validation-for="RouteName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label"> Vehicle Number</label>
-                <select asp-for="VehicleNum" id="VehicleNum" class="form-control" asp-items="@Model.VehicleList">
-                    <option value="">Select Vehicle Number</option>
-                </select>
-                <span asp-validation-for="VehicleNum" class="text-danger"> </span>
-            </div>
+            </div>           
             @if (ViewBag.EditRouteStatus == null)
             {
                 <div class="form-group">
@@ -55,7 +48,7 @@
                     <h1 class="Alert_header">Success</h1>
                     <p class="Alert_msg"> @ViewBag.EditRouteStatus</p>
                     <div>
-                        <a class="btn btn-success btn-sm mt-3" asp-action="Index">Back to List</a>
+                        <a class="btn btn-success btn-sm mt-3" asp-action="Index"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List</a>
                     </div>
                 </div>
             }
@@ -68,7 +61,7 @@
                     <h1 class="Alert_header text-danger">Oops...Sorry</h1>
                     <p class="Alert_msg"> @ViewBag.EditRouteStatus</p>
                     <div>
-                        <a class="btn btn-danger btn-sm mt-3" asp-action="Index">Back to List</a>
+                        <a class="btn btn-danger btn-sm mt-3" asp-action="Index"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List</a>
                     </div>
                 </div>
             }
